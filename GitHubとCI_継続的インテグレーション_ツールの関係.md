@@ -40,6 +40,8 @@ Git-flowについては、以下の記事がわかりやすい。
 * featureブランチやhotfixesブランチで作業した結果のコードをCIツールでチェックする
 * 機能実装やバグフィックスが完了した上で、CIツールでのチェックがこけなかったら、レビュー者にpull/requestを送信する
 * レビュー者がレビューし、問題がなければdevelopブランチにfeatureブランチやhotfixesブランチをmergeする
+→ このとき新しいコミットが GitHub によって作られるので `CI自体は動く`
+→ このdevelopブランチにmergeした際に、開発環境に自動でデプロイを行うような設定を行うと、わざわざ手作業でデプロイを行う手間がなくなるので、楽になる。
 
 以下、図にしてみた
 ![GitHubとCIツール.png](https://qiita-image-store.s3.amazonaws.com/0/145611/cea1b213-14b1-1feb-1190-3cd05837d01f.png)
@@ -56,10 +58,10 @@ Git-flowについては、以下の記事がわかりやすい。
 #### featureブランチを生やすところから開発の流れ
 1. developブランチからfeatureブランチを作成する
 2. 作成したブランチ内で、作業を行う(実装など)
-3. こまめに `git add` 、 `git commit ` `git push origin hoge` を行う
+3. `git add` 、 `git commit ` などを行う
 
 #### mergeの流れ
-1. pushすると、CIツールが自動でテストを行なったり、静的解析解析をしたりして、pushされたコードが正しいコードかどうかを確認する。<br>
+1. push( `git push origin hoge` )すると、CIツールが自動でテストを行なったり、静的解析解析をしたりして、pushされたコードが正しいコードかどうかを確認する。<br>
 → ここで、正しくない場合は、CIツールがこける(fail)
 
 #### featureブランチの機能が完成した上で、pushしたコードが正しかった場合(CIツールがこけなかった場合)
